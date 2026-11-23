@@ -1,0 +1,919 @@
+{
+  "sourceLanguage" : "en",
+  "strings" : {
+    "%@ is built for devices (%@), not for the Simulator. Build it for a simulator destination instead." : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$@ is built for devices (%2$@), not for the Simulator. Build it for a simulator destination instead."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ est compilé pour les appareils (%2$@), pas pour le simulateur. Compile-le pour une destination simulateur."
+          }
+        }
+      }
+    },
+    "%@ was installed but couldn't be opened: %@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$@ was installed but couldn't be opened: %2$@"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ a été installé mais n'a pas pu être ouvert : %2$@"
+          }
+        }
+      }
+    },
+    "%@: couldn't unpack it (%@)." : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$@: couldn't unpack it (%2$@)."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ : impossible de le décompresser (%2$@)."
+          }
+        }
+      }
+    },
+    "%@: no Payload/*.app inside, so it isn't an app archive." : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ : aucun Payload/*.app à l'intérieur, ce n'est donc pas une archive d'app."
+          }
+        }
+      }
+    },
+    "%lld booted" : {
+      "comment" : "Window subtitle: how many simulators are booted.",
+      "localizations" : {
+        "en" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld booted"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld booted"
+                }
+              }
+            }
+          }
+        },
+        "fr" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld allumé"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld allumés"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "Adding %lld files to Photos…" : {
+      "localizations" : {
+        "en" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Adding 1 file to Photos…"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Adding %lld files to Photos…"
+                }
+              }
+            }
+          }
+        },
+        "fr" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Ajout d'un fichier à Photos…"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Ajout de %lld fichiers à Photos…"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "App Switcher" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sélecteur d'apps"
+          }
+        }
+      }
+    },
+    "Boot" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Démarrer"
+          }
+        }
+      }
+    },
+    "Boot Slimmed" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Démarrer allégé"
+          }
+        }
+      }
+    },
+    "Boot Standard" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Démarrer en standard"
+          }
+        }
+      }
+    },
+    "Boot a simulator from the sidebar (▶︎)." : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Démarre un simulateur depuis la barre latérale (▶︎)."
+          }
+        }
+      }
+    },
+    "Booted" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Allumés"
+          }
+        }
+      }
+    },
+    "Booted from SimView or anywhere else (Xcode, simctl). Simulators already running are left as they are." : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Démarrés depuis SimView ou ailleurs (Xcode, simctl). Les simulateurs déjà allumés ne sont pas touchés."
+          }
+        }
+      }
+    },
+    "Booting Slimmed…" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Démarrage allégé…"
+          }
+        }
+      }
+    },
+    "Booting…" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Démarrage…"
+          }
+        }
+      }
+    },
+    "Can't boot with this Xcode" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ne peut pas démarrer avec ce Xcode"
+          }
+        }
+      }
+    },
+    "Captures" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Captures"
+          }
+        }
+      }
+    },
+    "Close a device's window (or press ⇧⌘D) to bring it back here." : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ferme la fenêtre d'un appareil (ou ⇧⌘D) pour le remettre ici."
+          }
+        }
+      }
+    },
+    "Copy" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Copier"
+          }
+        }
+      }
+    },
+    "Couldn't finish the drop on %@" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Impossible de terminer le dépôt sur %@"
+          }
+        }
+      }
+    },
+    "Couldn't rotate %@" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Impossible de faire pivoter %@"
+          }
+        }
+      }
+    },
+    "Detach into Window" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Détacher dans une fenêtre"
+          }
+        }
+      }
+    },
+    "Device" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Appareil"
+          }
+        }
+      }
+    },
+    "Don't Keep on Top" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ne plus garder au premier plan"
+          }
+        }
+      }
+    },
+    "Every Device Is in Its Own Window" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tout est dans des fenêtres à part"
+          }
+        }
+      }
+    },
+    "Exit status %d." : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Code de sortie %d."
+          }
+        }
+      }
+    },
+    "Fit All" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tout voir"
+          }
+        }
+      }
+    },
+    "Full Height" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pleine hauteur"
+          }
+        }
+      }
+    },
+    "Full height (⌘1) or everything at once (⌘2)" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pleine hauteur (⌘1) ou tout voir d'un coup (⌘2)"
+          }
+        }
+      }
+    },
+    "Home" : {
+      "comment" : "The device's Home button.",
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Home"
+          }
+        }
+      }
+    },
+    "In its own window" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dans sa propre fenêtre"
+          }
+        }
+      }
+    },
+    "Installing %@…" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Installation de %@…"
+          }
+        }
+      }
+    },
+    "Keep on Top" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Toujours au premier plan"
+          }
+        }
+      }
+    },
+    "Language" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Langue"
+          }
+        }
+      }
+    },
+    "Layout" : {
+      "comment" : "Toolbar picker: Full Height / Fit All.",
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Affichage"
+          }
+        }
+      }
+    },
+    "Lock" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Verrouiller"
+          }
+        }
+      }
+    },
+    "Move to Trash" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mettre à la corbeille"
+          }
+        }
+      }
+    },
+    "Needs simslim: brew install mobai-app/tap/simslim" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nécessite simslim : brew install mobai-app/tap/simslim"
+          }
+        }
+      }
+    },
+    "No Booted Simulators" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aucun simulateur allumé"
+          }
+        }
+      }
+    },
+    "No Captures" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aucune capture"
+          }
+        }
+      }
+    },
+    "Not an app, photo or video: %@." : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ni une app, ni une photo, ni une vidéo : %@."
+          }
+        }
+      }
+    },
+    "Open" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ouvrir"
+          }
+        }
+      }
+    },
+    "Open Apps After Installing" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ouvrir les apps après l'installation"
+          }
+        }
+      }
+    },
+    "Open Captures Folder" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ouvrir le dossier des captures"
+          }
+        }
+      }
+    },
+    "Opening %@…" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ouverture de %@…"
+          }
+        }
+      }
+    },
+    "Photos: %@" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Photos : %@"
+          }
+        }
+      }
+    },
+    "Preparing…" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Préparation…"
+          }
+        }
+      }
+    },
+    "Reattach All" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tout rattacher"
+          }
+        }
+      }
+    },
+    "Reattach to SimView" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rattacher à SimView"
+          }
+        }
+      }
+    },
+    "Record Video" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Enregistrer une vidéo"
+          }
+        }
+      }
+    },
+    "Relaunch Now" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Relancer maintenant"
+          }
+        }
+      }
+    },
+    "Restore Standard (Reboots)" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Remettre en standard (redémarre)"
+          }
+        }
+      }
+    },
+    "Restoring Standard…" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Retour au standard…"
+          }
+        }
+      }
+    },
+    "Rotate Left" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pivoter à gauche"
+          }
+        }
+      }
+    },
+    "Rotate Right" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pivoter à droite"
+          }
+        }
+      }
+    },
+    "Saving…" : {
+      "comment" : "A screen recording that was stopped, while its file is being written.",
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Enregistrement…"
+          }
+        }
+      }
+    },
+    "Screenshot" : {
+      "comment" : "Kind of capture in the sidebar: a screenshot (vs. a video).",
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Capture"
+          }
+        }
+      }
+    },
+    "Shake" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Secouer"
+          }
+        }
+      }
+    },
+    "Show Window" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Afficher sa fenêtre"
+          }
+        }
+      }
+    },
+    "Show in Finder" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Afficher dans le Finder"
+          }
+        }
+      }
+    },
+    "Show the captures folder in Finder" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ouvrir le dossier des captures dans le Finder"
+          }
+        }
+      }
+    },
+    "Shut Down" : {
+      "comment" : "Action: shut the simulator down.",
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Éteindre"
+          }
+        }
+      }
+    },
+    "Shutting Down…" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Arrêt…"
+          }
+        }
+      }
+    },
+    "SimView" : {
+      "shouldTranslate" : false
+    },
+    "Slim Down with simslim" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Alléger avec simslim"
+          }
+        }
+      }
+    },
+    "Slim down simulators when they boot" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Alléger les simulateurs au démarrage"
+          }
+        }
+      }
+    },
+    "Slimmed by simslim · click to restore standard (reboots)" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Allégé par simslim · cliquer pour revenir au standard (redémarre)"
+          }
+        }
+      }
+    },
+    "Slimming Down…" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Allègement…"
+          }
+        }
+      }
+    },
+    "Stop Recording" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Arrêter l'enregistrement"
+          }
+        }
+      }
+    },
+    "System" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Système"
+          }
+        }
+      }
+    },
+    "Take Screenshot" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Capture d'écran"
+          }
+        }
+      }
+    },
+    "The new language applies when SimView relaunches." : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "La nouvelle langue s'appliquera au prochain lancement de SimView."
+          }
+        }
+      }
+    },
+    "This device is slimmed by simslim, which turns off its photo library service: set it back to standard to add photos and videos." : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cet appareil est allégé par simslim, qui coupe son service de photothèque : remets-le en standard pour ajouter des photos et des vidéos."
+          }
+        }
+      }
+    },
+    "Toggle Appearance" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Changer d’apparence"
+          }
+        }
+      }
+    },
+    "Unavailable" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Indisponibles"
+          }
+        }
+      }
+    },
+    "Unpacking %@…" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Décompression de %@…"
+          }
+        }
+      }
+    },
+    "Video" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vidéo"
+          }
+        }
+      }
+    },
+    "Volume Down" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Volume −"
+          }
+        }
+      }
+    },
+    "Volume Up" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Volume +"
+          }
+        }
+      }
+    },
+    "active: %@" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "actif : %@"
+          }
+        }
+      }
+    },
+    "slimmed %lld/%lld" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "slimmed %1$lld/%2$lld"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "allégé %1$lld/%2$lld"
+          }
+        }
+      }
+    },
+    "standard" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "standard"
+          }
+        }
+      }
+    },
+    "⌘S: take a screenshot\n⌘R: record the active simulator" : {
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "⌘S : capture d'écran\n⌘R : filmer le simulateur actif"
+          }
+        }
+      }
+    }
+  },
+  "version" : "1.0"
+}
