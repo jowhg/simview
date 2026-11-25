@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.2.0 — 2026-11-25
+
+**App**
+
+- Scroll with the trackpad (two fingers) or a mouse wheel while the pointer is over a device's screen: it drags a
+  finger on the device, content follows your fingers, and iOS adds its own momentum when you lift them.
+  Horizontal scrolling works too; the device row still scrolls from the bezels and the gaps between devices.
+
 ## 0.1.0 — 2026-11-23
 
 First public release.

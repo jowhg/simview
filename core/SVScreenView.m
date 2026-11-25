@@ -12,6 +12,15 @@
 // (swipe up from the bottom = Home / App Switcher, down from the top = Control Center…).
 static const CGFloat SVEdgeMargin = 12;
 
+// Two-finger scrolling over the screen drags a finger on the device. It touches down only once the gesture has
+// moved this share of the screen's short side, so a scroll that barely moves never lands as a tap.
+static const CGFloat SVScrollSlop = 0.03;
+// The scrolling finger stays this many points inside the screen; reaching that it lifts and touches down again.
+static const CGFloat SVScrollInset = 24;
+// A mouse wheel's (imprecise) deltas are in lines: points per line, and how long after its last notch it lifts.
+static const CGFloat SVWheelLine = 16;
+static const NSTimeInterval SVWheelLift = 0.12;
+
 /// The built-in display (screen type 0), asked from the screen adapter as idb does on Xcode 27.
 /// Blocks up to 5 s: call off the main thread.
 static id<SVSimPrivate> SVMainScreen(id<SVSimPrivate> device) {
@@ -63,6 +72,11 @@ static uint64_t SVHIDUsageForKeyCode(unsigned short keyCode) {
   BOOL _stopped;
   BOOL _pinching;
   SVEdge _edge;
+  BOOL _scrolling;       // a scroll gesture is being turned into a finger
+  BOOL _scrollTouching;  // …whose finger is down on the device
+  NSPoint _scrollStart;  // where that finger touches down, in view points from the top-left
+  NSPoint _scrollFinger; // where it is now
+  NSTimer *_wheelTimer;  // lifts a mouse wheel's finger once the wheel stops
 }
 
 - (instancetype)initWithDevice:(id)device {
@@ -233,6 +247,7 @@ static uint64_t SVHIDUsageForKeyCode(unsigned short keyCode) {
   if (_screen && _callbackID) [_screen unregisterScreenCallbacksWithUUID:_callbackID];
   _screen = nil;
   _screenLayer.contents = nil;
+  [self endScroll];
   [_hid disconnect];
   _hid = nil;
 }
@@ -262,8 +277,17 @@ static uint64_t SVHIDUsageForKeyCode(unsigned short keyCode) {
 /// Where the event is on the framebuffer, as 0…1 ratios from its top-left corner. The framebuffer (and the
 /// digitizer dtuhidd feeds) stays portrait whatever the orientation: a rotated view's point is turned back.
 - (NSPoint)ratioForEvent:(NSEvent *)event {
+  return [self ratioForTopLeftPoint:[self topLeftPointForEvent:event]];
+}
+
+/// The event's location in view points from the view's top-left corner.
+- (NSPoint)topLeftPointForEvent:(NSEvent *)event {
   NSPoint p = [self convertPoint:event.locationInWindow fromView:nil];
-  CGFloat x = p.x / NSWidth(self.bounds), y = self.isFlipped ? p.y / NSHeight(self.bounds) : 1 - p.y / NSHeight(self.bounds);
+  return NSMakePoint(p.x, self.isFlipped ? p.y : NSHeight(self.bounds) - p.y);
+}
+
+- (NSPoint)ratioForTopLeftPoint:(NSPoint)p {
+  CGFloat x = p.x / NSWidth(self.bounds), y = p.y / NSHeight(self.bounds);
   x = MIN(MAX(x, 0), 1), y = MIN(MAX(y, 0), 1);
   switch (_quarterTurns) {
     case 1: return NSMakePoint(1 - y, x);  // turned counter-clockwise: the framebuffer's top is on the left
@@ -302,10 +326,113 @@ static uint64_t SVHIDUsageForKeyCode(unsigned short keyCode) {
 - (void)mouseDown:(NSEvent *)event {
   if (self.onActivate) self.onActivate();
   [self.window makeFirstResponder:self];
+  [self endScroll];
   [self touch:SVTouchPhaseStart event:event];
 }
 - (void)mouseDragged:(NSEvent *)event { [self touch:SVTouchPhaseMove event:event]; }
 - (void)mouseUp:(NSEvent *)event { [self touch:SVTouchPhaseEnd event:event]; }
+
+#pragma mark Scrolling = finger
+
+// Scrolling over the screen (trackpad or mouse wheel) drags a finger on the device, where the pointer is: the
+// content follows the fingers as it does on the Mac (scrollingDelta already follows "natural scrolling"). The
+// finger lifts with the gesture's own speed and iOS adds its own momentum: the Mac's momentum events are ignored.
+
+- (void)scrollWheel:(NSEvent *)event {
+  if (!_hid) return [super scrollWheel:event];
+  if (NSEvent.pressedMouseButtons & 1) return;  // a mouse drag already holds a finger down
+  if (event.momentumPhase != NSEventPhaseNone) return;
+  CGFloat scale = event.hasPreciseScrollingDeltas ? 1 : SVWheelLine;
+  NSSize delta = NSMakeSize(event.scrollingDeltaX * scale, event.scrollingDeltaY * scale);
+  switch (event.phase) {
+    case NSEventPhaseMayBegin: return;  // fingers resting on the trackpad: touching down could become a tap
+    case NSEventPhaseBegan:
+      [self endScroll];
+      [self beginScrollAt:[self topLeftPointForEvent:event]];
+      [self moveScrollBy:delta];
+      return;
+    case NSEventPhaseChanged:
+      if (!_scrolling) [self beginScrollAt:[self topLeftPointForEvent:event]];
+      [self moveScrollBy:delta];
+      return;
+    case NSEventPhaseEnded:
+    case NSEventPhaseCancelled:
+      if (_scrolling) [self moveScrollBy:delta];
+      [self endScroll];
+      return;
+    default: {  // a mouse wheel: no phases, its finger lifts once the notches stop
+      // Slow notches can be a fraction of a line: each still moves the finger past the slop.
+      CGFloat length = hypot(delta.width, delta.height);
+      CGFloat least = 2 * SVScrollSlop * MIN(NSWidth(self.bounds), NSHeight(self.bounds));
+      if (length > 0 && length < least) delta = NSMakeSize(delta.width * least / length, delta.height * least / length);
+      if (!_scrolling) [self beginScrollAt:[self topLeftPointForEvent:event]];
+      [self moveScrollBy:delta];
+      [_wheelTimer invalidate];
+      __weak SVScreenView *weakSelf = self;
+      _wheelTimer = [NSTimer scheduledTimerWithTimeInterval:SVWheelLift repeats:NO block:^(NSTimer *timer) {
+        [weakSelf endScroll];
+      }];
+      return;
+    }
+  }
+}
+
+/// The area the scrolling finger stays in, in view points from the top-left.
+- (NSRect)scrollArea {
+  CGFloat inset = MIN(SVScrollInset, MIN(NSWidth(self.bounds), NSHeight(self.bounds)) / 4);
+  return NSInsetRect(NSMakeRect(0, 0, NSWidth(self.bounds), NSHeight(self.bounds)), inset, inset);
+}
+
+static NSPoint SVClamp(NSPoint p, NSRect r) {
+  return NSMakePoint(MIN(MAX(p.x, NSMinX(r)), NSMaxX(r)), MIN(MAX(p.y, NSMinY(r)), NSMaxY(r)));
+}
+
+- (void)sendScrollFinger:(SVTouchPhase)phase {
+  NSPoint r = [self ratioForTopLeftPoint:_scrollFinger];
+  [_hid touch:phase x:r.x y:r.y edge:SVEdgeNone];  // never an edge gesture, even near the bottom
+}
+
+- (void)beginScrollAt:(NSPoint)point {
+  _scrolling = YES;
+  _scrollTouching = NO;
+  _scrollStart = _scrollFinger = SVClamp(point, [self scrollArea]);
+}
+
+- (void)moveScrollBy:(NSSize)delta {
+  if (!_scrolling || (delta.width == 0 && delta.height == 0)) return;
+  _scrollFinger.x += delta.width;
+  _scrollFinger.y += delta.height;
+  if (!_scrollTouching) {
+    CGFloat slop = SVScrollSlop * MIN(NSWidth(self.bounds), NSHeight(self.bounds));
+    if (hypot(_scrollFinger.x - _scrollStart.x, _scrollFinger.y - _scrollStart.y) < slop) return;
+    NSPoint here = _scrollFinger;
+    _scrollFinger = _scrollStart;
+    [self sendScrollFinger:SVTouchPhaseStart];
+    _scrollFinger = here;
+    _scrollTouching = YES;
+  }
+  NSRect area = [self scrollArea];
+  if (NSPointInRect(_scrollFinger, area)) return [self sendScrollFinger:SVTouchPhaseMove];
+  // The finger reached the screen's border: lift it there and touch down again on the far side, room to go on.
+  NSPoint overshoot = _scrollFinger;
+  _scrollFinger = SVClamp(_scrollFinger, area);
+  [self sendScrollFinger:SVTouchPhaseMove];
+  [self sendScrollFinger:SVTouchPhaseEnd];
+  NSPoint restart = _scrollFinger;
+  if (overshoot.y < NSMinY(area)) restart.y = NSMinY(area) + NSHeight(area) * 0.75;
+  else if (overshoot.y > NSMaxY(area)) restart.y = NSMinY(area) + NSHeight(area) * 0.25;
+  if (overshoot.x < NSMinX(area)) restart.x = NSMinX(area) + NSWidth(area) * 0.75;
+  else if (overshoot.x > NSMaxX(area)) restart.x = NSMinX(area) + NSWidth(area) * 0.25;
+  _scrollTouching = NO;
+  _scrollStart = _scrollFinger = restart;
+}
+
+- (void)endScroll {
+  [_wheelTimer invalidate];
+  _wheelTimer = nil;
+  if (_scrolling && _scrollTouching && _hid) [self sendScrollFinger:SVTouchPhaseEnd];
+  _scrolling = _scrollTouching = NO;
+}
 
 #pragma mark Cmd shortcuts = the device's
 
