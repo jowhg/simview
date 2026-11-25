@@ -2,8 +2,8 @@
 # Casks/simview.rb, so that `brew install --cask jowhg/tap/simview` works (after `brew trust jowhg/tap`). After each release, set
 # `version` and `sha256` from the release job's summary (or SHA256SUMS in the release).
 cask "simview" do
-  version "0.1.0"
-  sha256 "REPLACE_WITH_SHA256_OF_SimView-0.1.0.zip"
+  version "0.2.0"
+  sha256 "67773ab8e2aa24960101dc4664859456a274229e1dd99c8737f9be914b58ef2f"
 
   url "https://github.com/jowhg/simview/releases/download/v#{version}/SimView-#{version}.zip"
   name "SimView"
